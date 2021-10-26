@@ -1,7 +1,8 @@
 // declaring variables
 const currentDayEl = $('#currentDay');
 const scheduleContainerEl = $('#schedule-container');
-const now = moment().format('H');
+
+const currentHour = moment().format('HH');
 
 // show current date and time
 currentDayEl.text(moment().format('MMM Do YY'));
@@ -27,9 +28,6 @@ function createPlanner () {
         var createText = $('<input>');
         var createSave = $('<button>');
 
-        var generatedHour = moment(businessHours[i], ['HH']).format('h a');
-        console.log(generatedHour);
-
         // add bootstrap styling classes
         createRow.addClass('row hour-block');
         createHour.addClass('col hour-col');
@@ -37,8 +35,19 @@ function createPlanner () {
         createSave.addClass('col save-col');
 
         // set the content of each element
-        createHour.text(generatedHour);
+        createHour.text(moment(businessHours[i], ['HH']).format('h a'));
         createText.text('');
+
+        // color code text area according to current hour
+        var generatedHour = moment(businessHours[i], ['HH']).format('HH');
+
+        if (currentHour == generatedHour) {
+            createText.addClass('bg-success')
+        } else if (currentHour < generatedHour) {
+            createText.addClass('bg-danger');
+        } else {
+            createText.addClass('bg-secondary');
+        }
 
         // append it to the container
         createRow.append(createHour);
