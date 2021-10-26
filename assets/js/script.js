@@ -1,62 +1,46 @@
 // declaring variables
 const currentDayEl = $('#currentDay');
-const scheduleContainerEl = $('#schedule-container')
+const scheduleContainerEl = $('#schedule-container');
+const now = moment().format('H');
 
 // show current date and time
 currentDayEl.text(moment().format('MMM Do YY'));
 
 function createPlanner () {
-    var morningHours = [
-        '9',
+    // create morning hour blocks
+    var businessHours = [
+        '09',
         '10',
         '11',
-    ]
-
-    for (let i = 0; i < morningHours.length; i++) {
-        var createRow = $('<div>');
-
-        var createHour = $('<p>');
-        var createText = $('<input>');
-        var createSave = $('<button>');
-
-        createRow.addClass('row');
-        createHour.addClass('col');
-        createText.addClass('col');
-        createSave.addClass('col');
-
-        createHour.text(morningHours[i] + 'AM');
-        createText.text('');
-
-        createRow.append(createHour);
-        createRow.append(createText);
-        createRow.append(createSave);
-        scheduleContainerEl.append(createRow);
-    }
-
-    var afternoonHours = [
         '12',
-        '1',
-        '2',
-        '3',
-        '4',
-        '5',
+        '13',
+        '14',
+        '15',
+        '16',
+        '17',
     ]
 
-    for (let i = 0; i < afternoonHours.length; i++) {
+    for (let i = 0; i < businessHours.length; i++) {
+        // create each element of the hour block
         var createRow = $('<div>');
-
         var createHour = $('<p>');
         var createText = $('<input>');
         var createSave = $('<button>');
 
-        createRow.addClass('row');
-        createHour.addClass('col');
-        createText.addClass('col');
-        createSave.addClass('col');
+        var generatedHour = moment(businessHours[i], ['HH']).format('h a');
+        console.log(generatedHour);
 
-        createHour.text(afternoonHours[i] + 'PM');
+        // add bootstrap styling classes
+        createRow.addClass('row hour-block');
+        createHour.addClass('col hour-col');
+        createText.addClass('col text-col');
+        createSave.addClass('col save-col');
+
+        // set the content of each element
+        createHour.text(generatedHour);
         createText.text('');
 
+        // append it to the container
         createRow.append(createHour);
         createRow.append(createText);
         createRow.append(createSave);
