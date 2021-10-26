@@ -28,11 +28,11 @@ function createPlanner () {
         var createText = $('<input>');
         var createSave = $('<button>');
 
-        // add bootstrap styling classes
-        createRow.addClass('row hour-block');
-        createHour.addClass('col hour-col');
-        createText.addClass('col text-col');
-        createSave.addClass('col save-col');
+        // add classes
+        createRow.addClass('row time-block');
+        createHour.addClass('col-2 hour');
+        createText.addClass('col-8 text-col');
+        createSave.addClass('col-2 save-col saveBtn');
 
         // set the content of each element
         createHour.text(moment(businessHours[i], ['HH']).format('h a'));
@@ -42,11 +42,11 @@ function createPlanner () {
         var generatedHour = moment(businessHours[i], ['HH']).format('HH');
 
         if (currentHour == generatedHour) {
-            createText.addClass('bg-success')
+            createText.addClass('present')
         } else if (currentHour < generatedHour) {
-            createText.addClass('bg-danger');
+            createText.addClass('future');
         } else {
-            createText.addClass('bg-secondary');
+            createText.addClass('past');
         }
 
         // append it to the container
@@ -56,4 +56,18 @@ function createPlanner () {
         scheduleContainerEl.append(createRow);
     }
 }
+
+// declaring variables for saving schedule
+const saveButtonEl = $('.saveBtn');
+var savedPlans = localStorage.getItem('saved-plans');
+
+// function to save plans to local storage
+function savePlans() {
+
+}
+
+// event listener for save button
+saveButtonEl.on('click', savePlans())
+
+// create the day planner
 createPlanner();
