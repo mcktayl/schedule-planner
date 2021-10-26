@@ -16,8 +16,13 @@ function createPlanner () {
         var createRow = $('<div>');
 
         var createHour = $('<p>');
-        var createText = $('<p>');
+        var createText = $('<input>');
         var createSave = $('<button>');
+
+        createRow.addClass('row');
+        createHour.addClass('col');
+        createText.addClass('col');
+        createSave.addClass('col');
 
         createHour.text(morningHours[i] + 'AM');
         createText.text('');
@@ -41,8 +46,13 @@ function createPlanner () {
         var createRow = $('<div>');
 
         var createHour = $('<p>');
-        var createText = $('<p>');
+        var createText = $('<input>');
         var createSave = $('<button>');
+
+        createRow.addClass('row');
+        createHour.addClass('col');
+        createText.addClass('col');
+        createSave.addClass('col');
 
         createHour.text(afternoonHours[i] + 'PM');
         createText.text('');
