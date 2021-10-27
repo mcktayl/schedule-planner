@@ -56,18 +56,17 @@ function createPlanner () {
         createRow.append(createSave);
         scheduleContainerEl.append(createRow);
     }
+
+    var newPlans;
+    var savedPlans = localStorage.getItem('saved-plans');
+
+    $('.save-button').on('click', function () {
+        console.log('button clicked!')
+        newPlans = $(this).closest('.time-block').find('.text-area').val();
+        console.log(newPlans);
+        localStorage.setItem('saved-plans', newPlans);
+    });
 }
-
-// declaring variables for saving schedule
-var saveButtonEl = $('.save-button');
-var newPlans;
-var savedPlans;
-
-// event listener for save button
-saveButtonEl.on('click', function() {
-    newPlans = $(this).closest('.time-block').find('.text-area').val();
-    console.log(newPlans);
-})
 
 // create the day planner
 createPlanner();
