@@ -30,7 +30,7 @@ function createPlanner () {
 
         // add classes
         createRow.addClass('row time-block');
-        createHour.addClass('col-2 hour');
+        createHour.addClass('col-2 hour').attr('data-hour', businessHours[i]);
         createText.addClass('col-8 text-area');
         createSave.addClass('col-2 save-button');
 
@@ -63,7 +63,9 @@ function createPlanner () {
     $('.save-button').on('click', function () {
         console.log('button clicked!')
         newPlans = $(this).closest('.time-block').find('.text-area').val();
+        hourOfPlans = $(this).closest('.time-block').find('.hour').attr('data-hour');
         console.log(newPlans);
+        console.log(hourOfPlans);
         localStorage.setItem('saved-plans', newPlans);
     });
 }
