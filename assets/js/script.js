@@ -57,16 +57,17 @@ function createPlanner () {
         scheduleContainerEl.append(createRow);
     }
 
+    // variables for saving to local storage
+    var hourOfPlans;
     var newPlans;
     var savedPlans = localStorage.getItem('saved-plans');
 
+    // event listener for save button
     $('.save-button').on('click', function () {
-        console.log('button clicked!')
         newPlans = $(this).closest('.time-block').find('.text-area').val();
         hourOfPlans = $(this).closest('.time-block').find('.hour').attr('data-hour');
-        console.log(newPlans);
-        console.log(hourOfPlans);
-        localStorage.setItem('saved-plans', newPlans);
+
+        localStorage.setItem(`saved-plans-${hourOfPlans}`, newPlans);
     });
 }
 
