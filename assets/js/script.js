@@ -62,59 +62,58 @@ function createPlanner () {
     var newPlans;
     var savedPlans = {};
 
+    if (localStorage.getItem('savedPlans')) {
+        savedPlans = JSON.parse(localStorage.getItem('savedPlans'));
+    } else {
+        savedPlans = {
+            '09' : {
+                hour: '09',
+                value: '',
+            },
+            '10' : {
+                hour: '10',
+                value: '',
+            },
+            '11' : {
+                hour: '11',
+                value: '',
+            },
+            '12' : {
+                hour: '12',
+                value: '',
+            },
+            '13' : {
+                hour: '13',
+                value: '',
+            },
+            '14' : {
+                hour: '14',
+                value: '',
+            },
+            '15' : {
+                hour: '15',
+                value: '',
+            },
+            '16' : {
+                hour: '16',
+                value: '',
+            },
+            '17' : {
+                hour: '17',
+                value: ''
+            },
+        }
+    }
+
     // event listener for save button
     $('.save-button').on('click', function () {
         newPlans = $(this).closest('.time-block').find('.text-area').val();
         hourOfPlans = $(this).closest('.time-block').find('.hour').attr('data-hour');
 
+        savedPlans[hourOfPlans].value = newPlans;
+
         localStorage.setItem('savedPlans', JSON.stringify(savedPlans))
     });
-
-    // display saved plans
-   if (localStorage.getItem('savedPlans')) {
-       savedPlans = JSON.parse(localStorage.getItem('savedPlans'));
-   } else {
-       savedPlans = {
-           '9' : {
-               hour: '09',
-               value: '',
-           },
-           '10' : {
-               hour: '10',
-               value: '',
-           },
-           '11' : {
-               hour: '11',
-               value: '',
-           },
-           '12' : {
-               hour: '12',
-               value: '',
-           },
-           '13' : {
-               hour: '13',
-               value: '',
-           },
-           '14' : {
-               hour: '14',
-               value: '',
-           },
-           '15' : {
-               hour: '15',
-               value: '',
-           },
-           '16' : {
-               hour: '16',
-               value: '',
-           },
-           '17' : {
-               hour: '17',
-               value: ''
-           },
-       }
-   }
-
-
 }
 
 // create the day planner
