@@ -1,5 +1,5 @@
 // declaring variables
-const currentDayEl = $('#currentDay');
+const currentDayEl = $('#current-day');
 const scheduleContainerEl = $('#schedule-container');
 
 const currentHour = moment().format('HH');
@@ -31,12 +31,13 @@ function createPlanner () {
         // add classes
         createRow.addClass('row time-block');
         createHour.addClass('col-2 hour');
-        createText.addClass('col-8 text-col');
-        createSave.addClass('col-2 save-col saveBtn');
+        createText.addClass('col-8 text-area');
+        createSave.addClass('col-2 save-button');
 
         // set the content of each element
         createHour.text(moment(businessHours[i], ['HH']).format('h a'));
         createText.text('');
+        createSave.text('Save');
 
         // color code text area according to current hour
         var generatedHour = moment(businessHours[i], ['HH']).format('HH');
@@ -58,16 +59,15 @@ function createPlanner () {
 }
 
 // declaring variables for saving schedule
-const saveButtonEl = $('.saveBtn');
-var savedPlans = localStorage.getItem('saved-plans');
-
-// function to save plans to local storage
-function savePlans() {
-
-}
+var saveButtonEl = $('.save-button');
+var newPlans;
+var savedPlans;
 
 // event listener for save button
-saveButtonEl.on('click', savePlans())
+saveButtonEl.on('click', function() {
+    newPlans = $(this).closest('.time-block').find('.text-area').val();
+    console.log(newPlans);
+})
 
 // create the day planner
 createPlanner();
