@@ -62,6 +62,7 @@ function createPlanner () {
     var newPlans;
     var savedPlans = {};
 
+    // creates key-value pair that contains each hour's scheduled plans
     if (localStorage.getItem('savedPlans')) {
         savedPlans = JSON.parse(localStorage.getItem('savedPlans'));
     } else {
@@ -105,13 +106,19 @@ function createPlanner () {
         }
     }
 
+    $('.time-block').each(function() {
+        $(this).find('.text-area').val(savedPlans[$(this).find('.hour').attr('data-hour')].value)
+    })
+
     // event listener for save button
     $('.save-button').on('click', function () {
+        // allows different hours to be saved within single key-value pair
         newPlans = $(this).closest('.time-block').find('.text-area').val();
         hourOfPlans = $(this).closest('.time-block').find('.hour').attr('data-hour');
-
+        
         savedPlans[hourOfPlans].value = newPlans;
 
+        // saves plans to local storage
         localStorage.setItem('savedPlans', JSON.stringify(savedPlans))
     });
 }
