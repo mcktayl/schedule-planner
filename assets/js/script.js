@@ -3,12 +3,13 @@ const currentDayEl = $('#current-day');
 const scheduleContainerEl = $('#schedule-container');
 
 const currentHour = moment().format('HH');
+console.log(currentHour);
 
 // show current date and time
 currentDayEl.text(moment().format('MMM Do YY'));
 
 function createPlanner () {
-    // create morning hour blocks
+    // create hour blocks
     var businessHours = [
         '09',
         '10',
@@ -41,6 +42,7 @@ function createPlanner () {
 
         // color code text area according to current hour
         var generatedHour = moment(businessHours[i], ['HH']).format('HH');
+        console.log(generatedHour);
 
         if (currentHour == generatedHour) {
             createText.addClass('present')
@@ -105,14 +107,15 @@ function createPlanner () {
             },
         }
     }
-
+    
+    // display saved plans
     $('.time-block').each(function() {
         $(this).find('.text-area').val(savedPlans[$(this).find('.hour').attr('data-hour')].value)
     })
 
     // event listener for save button
     $('.save-button').on('click', function () {
-        // allows different hours to be saved within single key-value pair
+        // sets the saved value equal to the user input
         newPlans = $(this).closest('.time-block').find('.text-area').val();
         hourOfPlans = $(this).closest('.time-block').find('.hour').attr('data-hour');
         
