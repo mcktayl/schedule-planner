@@ -2,6 +2,8 @@
 
 ## Description
 
+My project can be viewed [here](https://mcktayl.github.io/schedule-planner/).
+
 The schedule planner allows the user to save their daily plans to local storage so that it will remain upon refreshing/reloading. This project can increase time management and organization, leading to higher productivity overall.
 
 ## Table of Contents
