@@ -21,6 +21,10 @@ A video demonstration can be viewed [here]().
 
 Upon loading, the user is presented with the date and a series of time blocks in which to write their plans/appointments. The blocks are color coded according to the hour (grey when that hour has passed, red when currently in that hour, and green if that hour is in the future). The user can click "save" to save the text entered in that hour to local storage.
 
+![screenshot-01](./assets/images/screenshot-01.png)
+
+![screenshot-02](./assets/images/screenshot-02.png)
+
 ## Credits
 
 - [https://newbedev.com/convert-12-hour-am-pm-string-to-24-date-object-using-moment-js](https://newbedev.com/convert-12-hour-am-pm-string-to-24-date-object-using-moment-js)
